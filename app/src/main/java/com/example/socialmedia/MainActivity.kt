@@ -11,6 +11,11 @@ class MainActivity : AppCompatActivity() {
 
 
         println("This is a new comment")
+        println("This is a new comment")
+        println("This is a new comment")
+        println("This is a new comment")
+        println("This is a new comment")
+
 
 
 
