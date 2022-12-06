@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "517321348245",
+    "project_id": "socialmedia-acead",
+    "storage_bucket": "socialmedia-acead.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517321348245:android:5e9b88abc1420a2840779c",
+        "android_client_info": {
+          "package_name": "com.example.socialmedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517321348245-nkv2gvhvh7pcrm6p1gurkj9lsbmcl02i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7OOg4NjUX-VXtR90P-Km7mK4rq7buHC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517321348245-nkv2gvhvh7pcrm6p1gurkj9lsbmcl02i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
