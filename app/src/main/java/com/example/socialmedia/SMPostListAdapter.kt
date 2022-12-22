@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
 
 class SMPostListAdapter(private val dataSet: ArrayList<SMPost>,
@@ -19,13 +20,13 @@ class SMPostListAdapter(private val dataSet: ArrayList<SMPost>,
             var postTitle: TextView
             var pfp: ImageView
             var imagePost: ImageView
-            var numLikes: TextView
+            //var numLikes: TextView
 
             init {
                 postTitle = view.findViewById(R.id.postTitle)
                 pfp = view.findViewById(R.id.profilePicture)
                 imagePost = view.findViewById(R.id.postImage)
-                numLikes = view.findViewById(R.id.likesAmount)
+               // numLikes = view.findViewById(R.id.likesAmount)W
                 view.setOnLongClickListener{
 
                     //TODO: Download Image
@@ -34,9 +35,6 @@ class SMPostListAdapter(private val dataSet: ArrayList<SMPost>,
                 }
 
             }
-
-
-
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,9 +45,10 @@ class SMPostListAdapter(private val dataSet: ArrayList<SMPost>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.postTitle.text = "Generic Title"
-        holder.pfp.setImageResource(R.drawable.mountains)
-        holder.imagePost.setImageResource(R.drawable.mountains)
-        holder.numLikes.text = "1000"
+        holder.pfp.setImageResource(com.google.android.material.R.drawable.test_custom_background) //dataSet[position].user
+        holder.imagePost.setImageDrawable(dataSet[position].postImage)
+        println("Pos $position : "+ dataSet[position].postImage.toString())
+        //holder.numLikes.text = "1000"
     }
 
     override fun getItemCount() = dataSet.size
