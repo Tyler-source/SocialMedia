@@ -1,11 +1,9 @@
 package com.example.socialmedia
 
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.widget.ImageView
 import androidx.core.graphics.drawable.toDrawable
 
-class SMPost(ID: Int , userID: Int) {
+class SMPost(ID: Int , userID: Int, img : Drawable) {
 
     var user: Int
     var postID : Int
@@ -15,7 +13,7 @@ class SMPost(ID: Int , userID: Int) {
     init {
         user  = userID
         postID = ID
-        postImage = R.drawable.mountains.toDrawable()
+        postImage = img
         likes = 1500
     }
 
