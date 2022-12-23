@@ -1,12 +1,13 @@
 package com.example.socialmedia
 
 import android.graphics.drawable.Drawable
+import android.security.keystore.StrongBoxUnavailableException
 import androidx.core.graphics.drawable.toDrawable
 
-class SMPost(ID: Int , userID: Int, img : Drawable) {
+class SMPost(ID: String , userID: String?, img : Drawable) {
 
-    var user: Int
-    var postID : Int
+    var user: String?
+    var postID : String
     var postImage: Drawable
     var likes : Int
 
