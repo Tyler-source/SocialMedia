@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun refresh(){
-
+        dataset.clear()
         val listRef = storage.reference.child("images")
         listRef.listAll()
             .addOnSuccessListener { (items, prefixes) ->
