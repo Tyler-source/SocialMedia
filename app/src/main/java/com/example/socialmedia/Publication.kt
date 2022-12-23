@@ -18,6 +18,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.OnRequestPermissionsResultCallback
 import androidx.core.content.ContextCompat
@@ -28,7 +29,8 @@ import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
-import kotlin.random.Random
+import java.util.*
+import kotlin.math.abs
 
 class Publication : AppCompatActivity() {
 
@@ -36,13 +38,15 @@ class Publication : AppCompatActivity() {
     var pickedPhoto : Uri? = null
     var pickedBitMap : Bitmap? = null
     var storage = Firebase.storage
+    lateinit var postTitle :TextView
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_publication)
 
         val firebaseImage = findViewById<ImageView>(R.id.firebaseImage)
-        val postTitle = findViewById<TextView>(R.id.txtData)
+        postTitle = findViewById<TextView>(R.id.txtData)
         val uploadImageBtn = findViewById<Button>(R.id.uploadImageBtn)
         val edBack = findViewById<TextView>(R.id.edBack)
 
@@ -102,24 +106,32 @@ class Publication : AppCompatActivity() {
 
 
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun uploadImage(Image:Bitmap) {
         var storageRef : StorageReference = storage.reference
-        var Post_Id = Random.nextInt(0,1000000000)
+
+        var rand: Random = Random()
+        rand.ints(0,100000)
+        var Post_Id = abs(rand.nextInt())
+        println(Post_Id)
         var postRef = storageRef.child("images/$Post_Id.jpg")
 
         val metadata = storageMetadata {
             contentType = "image/jpg"
             setCustomMetadata("UID", "input")
-            setCustomMetadata("PostTitle", "myTitle")
+            setCustomMetadata("PostTitle", postTitle.text.toString() )
         }
-        postRef.metadata.addOnSuccessListener {
-                metadata -> println("metadata") }.addOnFailureListener{ }
+
 
         val stream = ByteArrayOutputStream()
         Image.compress(Bitmap.CompressFormat.JPEG, 100, stream)
 
         var uploadTask = postRef.putBytes(stream.toByteArray())
-        uploadTask.addOnSuccessListener { println("done") }
+        uploadTask.addOnSuccessListener { println("done")
+            postRef.metadata.addOnSuccessListener { metadata -> }
+            postRef.updateMetadata(metadata).addOnSuccessListener {  println("metadata working")}.addOnFailureListener{ println("metadata failed")}
+        }.addOnFailureListener{println("not done")}
+
 
 
     }

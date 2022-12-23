@@ -4,14 +4,16 @@ import android.graphics.drawable.Drawable
 import android.security.keystore.StrongBoxUnavailableException
 import androidx.core.graphics.drawable.toDrawable
 
-class SMPost(ID: String , userID: String?, img : Drawable) {
+class SMPost(postTitleIN: String,ID: String , userID: String?, img : Drawable) {
 
+    var postTitle: String
     var user: String?
     var postID : String
     var postImage: Drawable
     var likes : Int
 
     init {
+        postTitle = postTitleIN
         user  = userID
         postID = ID
         postImage = img

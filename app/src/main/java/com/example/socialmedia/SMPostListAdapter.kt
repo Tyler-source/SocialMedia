@@ -44,11 +44,11 @@ class SMPostListAdapter(private val dataSet: ArrayList<SMPost>,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.postTitle.text = "Generic Title"
-        holder.pfp.setImageResource(com.google.android.material.R.drawable.test_custom_background) //dataSet[position].user
+        holder.postTitle.text = dataSet[position].postTitle
+        holder.pfp.setImageResource(R.drawable.avatar)
         holder.imagePost.setImageDrawable(dataSet[position].postImage)
-        println("Pos $position : "+ dataSet[position].postImage.toString())
-        //holder.numLikes.text = "1000"
+
+
     }
 
     override fun getItemCount() = dataSet.size
